@@ -1,0 +1,37 @@
+---
+- hosts: all
+  gather_facts: true
+  vars:
+    # what port should the cosi-server daemon listen on
+    # NOTE: cosi-server runs as nobody...a user which cannot listen on ports below 1024
+    cosi_server_port: 8080
+    #
+    # cosi-server repository URL (only change if testing development version of cosi-server)
+    #
+    repo_url: "https://github.com/maier/cosi-server"
+    #
+    # set to cosi-server tag for release version to install (see <repo_url>/releases)
+    #
+    version_tag: "v0.1.2"
+    #
+    # derived name of tgz to download and install
+    #
+    install_file: "cosi-server_{{ version_tag|replace('v','') }}_{{ ansible_system|lower }}_64-bit.tar.gz"
+    #
+    # the full download URL computed for the release would be:
+    # https://github.com/maier/cosi-server/releases/download/v0.1.1/cosi-server_0.1.1_linux_64-bit.tar.gz
+    #
+    download_url: "{{ repo_url }}/releases/download/{{ version_tag }}/{{ install_file }}"
+    #
+    # get checksum from <repo_url>/releases, tag will have a cosi-server_checksums.txt containing sha256 signatures
+    #
+    download_checksum: sha256:15a4510f3b7ebd5672864802fed784372d09f4f23726a22cca5944ff78d45d0b
+    #
+    # set to true to serve agent packages from local cosi-sever (e.g. during dev testing)
+    # put the test packages to serve in roles/server/files/packages directory
+    # and ensure roles/server/templates/circonus-packages.yaml.j2 reflects the test package names
+    #
+    local_agent_packages: true
+  roles:
+    - os
+    - server

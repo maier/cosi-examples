@@ -1,0 +1,8 @@
+---
+
+# supported architectures
+valid_architectures:
+  - "x86_64"
+  - "amd64"
+
+tar_cmd: tar

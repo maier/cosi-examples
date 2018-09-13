@@ -1,0 +1,9 @@
+---
+
+# common variables
+cosi_directory: "/opt/circonus/cosi-server"
+
+cosi_owner: "root"
+cosi_group: "root"
+
+download_file: "{{ cosi_directory }}/cosi-server-{{ version_tag }}.tar.gz"

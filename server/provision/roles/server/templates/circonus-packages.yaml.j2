@@ -1,0 +1,98 @@
+---
+# dist: the OS distribution
+# vers: the dist version
+# type: the dist OS type
+# arch: the system architecture
+# package_info: defines name and where to get agent package
+#   package_url: base url if not the default (e.g. --package-url=http://updates.circonus.net/node-agent/packages)
+#   package_file: added to package_url to retrieve the agent package
+#   publisher_url: for pkg based OS (e.g. OmniOS)
+#   publisher_name: for pkg based OS (e.g. OmniOS)
+#   package_name: for pkg based OS (e.g. OmniOS), name of agent package to install (from publisher)
+#
+# if package_file and package_name are not defined the entry is ignored
+# if package_url is not defined, the default will be used
+
+- dist: Ubuntu
+  vers: '16.04'
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.ubuntu.16.04_x86_64.deb
+
+- dist: Ubuntu
+  vers: '14.04'
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.ubuntu.14.04_x86_64.deb
+
+- dist: debian
+  vers: 9
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.ubuntu.16.04_x86_64.deb
+
+- dist: debian
+  vers: 8
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.ubuntu.16.04_x86_64.deb
+
+- dist: CentOS
+  vers: 7
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.el7.centos.x86_64.rpm
+
+- dist: CentOS
+  vers: 6
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.el6.x86_64.rpm
+
+- dist: RedHat
+  vers: 7
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.el7.centos.x86_64.rpm
+
+- dist: RedHat
+  vers: 6
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.el6.x86_64.rpm
+
+- dist: Oracle
+  vers: 7
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.el7.centos.x86_64.rpm
+
+- dist: amzn
+  vers: '2017.03'
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.el6.x86_64.rpm
+
+- dist: amzn
+  vers: '2016.03'
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-0.16.1-1.el6.x86_64.rpm
+
+- dist: FreeBSD
+  vers: '11.0'
+  arch: amd64
+  type: BSD
+  package_info:
+    package_file: circonus-agent-0.16.1-1.freebsd.11.2_amd64.tgz

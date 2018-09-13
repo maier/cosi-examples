@@ -1,0 +1,11 @@
+---
+#
+# common tasks across OS distributions
+#
+
+#
+# ensure 64bit architecture, cosi-server binaries are 64bit only
+#
+- name: Check architecture
+  fail: msg="Architecture '{{ ansible_userspace_architecture }}' not one of {{ valid_architectures|join(', ') }}"
+  when: ansible_userspace_architecture not in valid_architectures

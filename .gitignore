@@ -1,0 +1,18 @@
+# MacOS
+.DS_Store
+
+# Vagrant
+.vagrant*/
+
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+
+
+# server
+server/provision/cosi-server.retry
+server/provision/roles/server/files/packages/*.rpm
+server/provision/roles/server/files/packages/*.deb
+server/provision/roles/server/files/packages/*.tgz

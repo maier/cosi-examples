@@ -1,0 +1,12 @@
+[Unit]
+Description=Circonus One Step Install Server
+Documentation=http://github.com/circonus-labs/cosi-server
+After=network.target
+
+[Service]
+ExecStart={{ cosi_directory }}/sbin/cosi-serverd
+Restart=always
+User=nobody
+
+[Install]
+WantedBy=multi-user.target

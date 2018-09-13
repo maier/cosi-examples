@@ -1,0 +1,24 @@
+server_ip = '192.168.100.10'
+
+Vagrant.configure(2) do |config|
+    config.vm.define 'server' do |server|
+        server.vm.box = 'maier/centos-7.4.1708-x86_64'
+        server.vm.hostname = 'cosi-server'
+        server.vm.network 'private_network', ip: server_ip
+        server.vm.provider 'virtualbox' do |vb|
+            vb.name = 'c7_cosi-examples-server'
+            vb.cpus = 1
+        end
+        server.vm.provision 'ansible' do |ansible|
+            # ansible.verbose = 'vvvv'
+            ansible.compatibility_mode = '2.0'
+            #
+            # update vars in playbook to customize
+            #
+            ansible.playbook = 'provision/cosi-server.yaml'
+            ansible.extra_vars = {
+                cosi_server_ip: server_ip.to_s
+            }
+        end
+    end
+end

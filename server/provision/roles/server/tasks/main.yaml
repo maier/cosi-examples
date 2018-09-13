@@ -1,0 +1,38 @@
+---
+#
+# install cosi server
+#
+
+- debug: msg="Installing cosi-server {{ version_tag }} local packages:{{ local_agent_packages }}"
+
+- name: Common variables
+  include_vars: "../vars/common.yaml"
+
+- name: OS Specific variables
+  include_vars: "{{ item }}"
+  with_first_found:
+      - files:
+          - "../vars/{{ ansible_distribution }}-{{ ansible_distribution_version }}.yaml"
+          - "../vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yaml"
+          - "../vars/{{ ansible_distribution }}.yaml"
+          - "../vars/{{ ansible_os_family }}.yaml"
+          - "../vars/{{ ansible_system }}.yaml"
+        skip: true
+
+- name: Common tasks
+  import_tasks: "common.yaml"
+
+- name: OS Specific tasks
+  include_tasks: "{{ item }}"
+  with_first_found:
+      - files:
+          - "{{ ansible_distribution }}-{{ ansible_distribution_version }}.yaml"
+          - "{{ ansible_distribution }}-{{ ansible_distribution_major_version }}.yaml"
+          - "{{ ansible_distribution }}.yaml"
+          - "{{ ansible_os_family }}.yaml"
+          - "{{ ansible_system }}.yaml"
+        skip: true
+
+- name: Enable cosi-server service
+  become: true
+  service: name="cosi-server" enabled=yes
