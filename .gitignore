@@ -16,3 +16,6 @@ server/provision/cosi-server.retry
 server/provision/roles/server/files/packages/*.rpm
 server/provision/roles/server/files/packages/*.deb
 server/provision/roles/server/files/packages/*.tgz
+
+# tool
+tool/**/config.yaml
