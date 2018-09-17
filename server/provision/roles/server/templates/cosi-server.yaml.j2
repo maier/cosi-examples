@@ -3,6 +3,8 @@
 listen: [":{{ cosi_server_port }}"]
 local_packages: {{ local_agent_packages }}
 local_package_path: {{cosi_directory }}/content/packages
+cosi_tool_version: {{ cosi_tool_version }}
+cosi_tool_base_url: {{ cosi_tool_base_url }}
 content_path: {{ cosi_directory}}/content
 package_config_file: {{ cosi_directory }}/etc/circonus-packages.yaml
 {% if local_agent_packages %}

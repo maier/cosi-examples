@@ -1,0 +1,12 @@
+---
+    # rename to 'config.yaml', edit and set variables
+
+    # set server ip to correspond with the private ip set in ../../server/Vagrantfile
+    # note: the server NEEDS to be running for examples to work correctly
+    server_ip: 192.168.100.10
+
+    # set to the api key from a valid new host cosi command as displayed in the UI
+    circonus_api_key: null
+
+    # set to the api app from a valid new host cosi command as displayed in the UI
+    circonus_api_app: null

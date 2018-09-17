@@ -12,7 +12,7 @@
     #
     # set to cosi-server tag for release version to install (see <repo_url>/releases)
     #
-    version_tag: "v0.1.2"
+    version_tag: "v0.2.0"
     #
     # derived name of tgz to download and install
     #
@@ -25,13 +25,17 @@
     #
     # get checksum from <repo_url>/releases, tag will have a cosi-server_checksums.txt containing sha256 signatures
     #
-    download_checksum: sha256:15a4510f3b7ebd5672864802fed784372d09f4f23726a22cca5944ff78d45d0b
+    download_checksum: sha256:8c7f49186e734b2ab07f293437d22ea0baf152e6775ef6eebd265ca82c97face
     #
     # set to true to serve agent packages from local cosi-sever (e.g. during dev testing)
     # put the test packages to serve in roles/server/files/packages directory
     # and ensure roles/server/templates/circonus-packages.yaml.j2 reflects the test package names
     #
     local_agent_packages: true
+    #
+    # cosi tool settings
+    cosi_tool_version: v0.2.0
+    cosi_tool_base_url: "https://github.com/maier/cosi-tool/releases/download"
   roles:
     - os
     - server

@@ -1,0 +1,44 @@
+require 'yaml'
+
+config_file = "#{File.dirname(__FILE__)}/config.yaml"
+
+unless File.file? config_file
+    puts 'missing config file - see examples-config.yaml'
+    exit 1
+end
+
+cfg = YAML.load_file(config_file)
+
+csip = cfg['server_ip']
+if [nil, ''].include? csip
+    puts 'invalid server ip in config.yaml'
+    exit 1
+end
+api_key = cfg['circonus_api_key']
+if [nil, ''].include? api_key
+    puts 'invalid api key in config.yaml'
+    exit 1
+end
+api_app = cfg['circonus_api_app']
+if [nil, ''].include? api_app
+    puts 'invalid api app in config.yaml'
+    exit 1
+end
+
+Vagrant.configure(2) do |config|
+    config.vm.define 'c7' do |c7|
+        c7.vm.box = 'maier/centos-7.4.1708-x86_64'
+        c7.vm.hostname = 'cosi-tool-c7'
+        # note: must be in same subnet as server_ip in config.rb
+        c7.vm.network 'private_network', ip: '192.168.100.11'
+        c7.vm.provider 'virtualbox' do |vb|
+            vb.name = 'c7_cosi-examples-client-basic'
+            vb.cpus = 1
+        end
+        c7.vm.provision 'shell', inline: <<-SHELL
+            yum -q -e 0 makecache fast
+            echo "#{csip} cosi-server" >> /etc/hosts
+            #curl "http://cosi-server/install" | bash -s -- --key "#{api_key}" --app "#{api_app}" --cosiurl "http://cosi-server/"
+        SHELL
+    end
+end
