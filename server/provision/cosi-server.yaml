@@ -11,21 +11,19 @@
     repo_url: "https://github.com/maier/cosi-server"
     #
     # set to cosi-server tag for release version to install (see <repo_url>/releases)
+    # get version checksum from cosi-server_checksums.txt (sha256 signatures) in <repo_url>/releases
     #
-    version_tag: "v0.2.0"
+    version_tag: "v0.2.1"
+    version_checksum: sha256:11868fceb364bb794d51b84883886bb5ecf22c46a16da3c3bfcbc05d2802ef51
     #
     # derived name of tgz to download and install
     #
     install_file: "cosi-server_{{ version_tag|replace('v','') }}_{{ ansible_system|lower }}_64-bit.tar.gz"
     #
-    # the full download URL computed for the release would be:
-    # https://github.com/maier/cosi-server/releases/download/v0.1.1/cosi-server_0.1.1_linux_64-bit.tar.gz
+    # the full download URL computed for the release would be, for example:
+    # https://github.com/circonus-labs/cosi-server/releases/download/v0.1.0/cosi-server_0.1.0_linux_64-bit.tar.gz
     #
     download_url: "{{ repo_url }}/releases/download/{{ version_tag }}/{{ install_file }}"
-    #
-    # get checksum from <repo_url>/releases, tag will have a cosi-server_checksums.txt containing sha256 signatures
-    #
-    download_checksum: sha256:8c7f49186e734b2ab07f293437d22ea0baf152e6775ef6eebd265ca82c97face
     #
     # set to true to serve agent packages from local cosi-sever (e.g. during dev testing)
     # put the test packages to serve in roles/server/files/packages directory
@@ -33,7 +31,9 @@
     #
     local_agent_packages: true
     #
-    # cosi tool settings
+    # cosi tool settings - the file to redirect the install request to will be
+    # dynamically generated based on query arguments sent by the installer (system
+    # os type (e.g. linux, freebsd, solaris, etc.), system architecture, etc.)
     cosi_tool_version: v0.2.0
     cosi_tool_base_url: "https://github.com/maier/cosi-tool/releases/download"
   roles:
