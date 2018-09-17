@@ -13,8 +13,8 @@
     # set to cosi-server tag for release version to install (see <repo_url>/releases)
     # get version checksum from cosi-server_checksums.txt (sha256 signatures) in <repo_url>/releases
     #
-    version_tag: "v0.2.1"
-    version_checksum: sha256:11868fceb364bb794d51b84883886bb5ecf22c46a16da3c3bfcbc05d2802ef51
+    version_tag: "v0.2.2"
+    version_checksum: sha256:c2dd0de4fd31c7277b1e61e56abd508d65ae2c8cc9fcb60788cfd207da7f79be
     #
     # derived name of tgz to download and install
     #
@@ -34,7 +34,7 @@
     # cosi tool settings - the file to redirect the install request to will be
     # dynamically generated based on query arguments sent by the installer (system
     # os type (e.g. linux, freebsd, solaris, etc.), system architecture, etc.)
-    cosi_tool_version: v0.2.2
+    cosi_tool_version: v0.2.4
     cosi_tool_base_url: "https://github.com/maier/cosi-tool/releases/download"
   roles:
     - os
