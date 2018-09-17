@@ -14,7 +14,7 @@
   get_url:
       url: "{{ download_url }}"
       dest: "{{ download_file }}"
-      checksum: "{{ download_checksum }}"
+      checksum: "{{ version_checksum }}"
 
 - name: Unpack cosi-server release
   become: true
