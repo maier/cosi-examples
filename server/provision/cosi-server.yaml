@@ -34,7 +34,7 @@
     # cosi tool settings - the file to redirect the install request to will be
     # dynamically generated based on query arguments sent by the installer (system
     # os type (e.g. linux, freebsd, solaris, etc.), system architecture, etc.)
-    cosi_tool_version: v0.2.0
+    cosi_tool_version: v0.2.2
     cosi_tool_base_url: "https://github.com/maier/cosi-tool/releases/download"
   roles:
     - os
