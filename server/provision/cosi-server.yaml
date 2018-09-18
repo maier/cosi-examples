@@ -5,13 +5,13 @@
     #
     # cosi-server repository URL (only change if testing development version of cosi-server)
     #
-    repo_url: "https://github.com/maier/cosi-server"
+    repo_url: "https://github.com/circonus-labs/cosi-server"
     #
     # set to cosi-server tag for release version to install (see <repo_url>/releases)
     # get version checksum from cosi-server_checksums.txt (sha256 signatures) in <repo_url>/releases
     #
-    version_tag: "v0.2.2"
-    version_checksum: sha256:c2dd0de4fd31c7277b1e61e56abd508d65ae2c8cc9fcb60788cfd207da7f79be
+    version_tag: "v0.3.0"
+    version_checksum: sha256:83ed8e398507f9529928b40023199c6057695ff52216b6d1e00f185eb6abdfdd
     #
     # derived name of tgz to download and install
     #
