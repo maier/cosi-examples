@@ -16,6 +16,11 @@ if [nil, ''].include? csip
     puts 'invalid server ip in config.yaml'
     exit 1
 end
+csport = cfg['server_port']
+if [nil, 0].include? csport
+    puts 'invalid server port in config.yaml'
+    exit 1
+end
 api_key = cfg['circonus_api_key']
 if [nil, ''].include? api_key
     puts 'invalid api key in config.yaml'
@@ -27,7 +32,7 @@ if [nil, ''].include? api_app
     exit 1
 end
 
-cosi_url = "http://#{csip}:8080/"
+cosi_url = "http://#{csip}:#{server_port}/"
 cosi_cmd = %(
 curl -sSL \"#{cosi_url}install/\" | bash -s -- \
 --key \"#{api_key}\" \
