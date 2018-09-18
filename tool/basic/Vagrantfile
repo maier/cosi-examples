@@ -11,13 +11,13 @@ end
 
 cfg = YAML.load_file(config_file)
 
-csip = cfg['server_ip']
-if [nil, ''].include? csip
+svr_ip = cfg['server_ip']
+if [nil, ''].include? svr_ip
     puts 'invalid server ip in config.yaml'
     exit 1
 end
-csport = cfg['server_port']
-if [nil, 0].include? csport
+svr_port = cfg['server_port']
+if [nil, 0].include? svr_port
     puts 'invalid server port in config.yaml'
     exit 1
 end
@@ -32,7 +32,7 @@ if [nil, ''].include? api_app
     exit 1
 end
 
-cosi_url = "http://#{csip}:#{server_port}/"
+cosi_url = "http://#{svr_ip}:#{svr_port}/"
 cosi_cmd = %(
 curl -sSL \"#{cosi_url}install/\" | bash -s -- \
 --key \"#{api_key}\" \
