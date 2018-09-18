@@ -2,9 +2,6 @@
 - hosts: all
   gather_facts: true
   vars:
-    # what port should the cosi-server daemon listen on
-    # NOTE: cosi-server runs as nobody...a user which cannot listen on ports below 1024
-    cosi_server_port: 8080
     #
     # cosi-server repository URL (only change if testing development version of cosi-server)
     #
