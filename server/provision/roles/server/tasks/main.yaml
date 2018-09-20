@@ -33,6 +33,6 @@
           - "{{ ansible_system }}.yaml"
         skip: true
 
-- name: Enable cosi-server service
+- name: Enable circonus-cosi-server service
   become: true
-  service: name="cosi-server" enabled=yes
+  service: name="circonus-cosi-server" enabled=yes

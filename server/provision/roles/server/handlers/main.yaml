@@ -2,4 +2,4 @@
 
 - name: Restart Server
   become: true
-  service: name="cosi-server" state="restarted"
+  service: name="circonus-cosi-server" state="restarted"
