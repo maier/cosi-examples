@@ -1,21 +1,21 @@
 ---
 
-listen: [":{{ cosi_server_port }}"]
+listen: ["{{ cosi_listen }}"]
 local_packages: {{ local_agent_packages }}
-local_package_path: {{cosi_directory }}/content/packages
+local_package_path: "{{cosi_directory }}/content/packages"
 cosi_tool_version: {{ cosi_tool_version }}
 cosi_tool_base_url: {{ cosi_tool_base_url }}
-content_path: {{ cosi_directory}}/content
-package_config_file: {{ cosi_directory }}/etc/circonus-packages.yaml
+content_path: "{{ cosi_directory}}/content"
+package_config_file: "{{ cosi_directory }}/etc/circonus-packages.yaml"
 {% if local_agent_packages %}
-package_base_url: http://{{ cosi_server_ip }}:{{ cosi_server_port }}/packages
+package_base_url: "http://{{ cosi_server_addr }}:{{ cosi_server_port }}/packages"
 {% else %}
 package_base_url: http://updates.circonus.com/node-agent/packages
 {% endif %}
 ssl:
   listen: ""
-  cert_file: {{ cosi_directory }}/etc/cosi-server.pem
-  key_file: {{ cosi_directory }}/etc/cosi-server.key
+  cert_file: "{{ cosi_directory }}/etc/cosi-server.pem"
+  key_file: "{{ cosi_directory }}/etc/cosi-server.key"
   verify: true
 enable_template_cache: true
 validators:
