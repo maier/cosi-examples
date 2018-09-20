@@ -21,4 +21,4 @@ server/provision/roles/server/files/packages/*.deb
 server/provision/roles/server/files/packages/*.tgz
 
 # tool
-tool/**/config.yaml
+tool/basic/config.yaml
