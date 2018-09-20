@@ -12,6 +12,8 @@
 
 
 # server
+server/circonus-agentd
+server/cosi-serverd
 server/provision/*.retry
 server/provision/prod.*
 server/provision/roles/server/files/packages/*.rpm
