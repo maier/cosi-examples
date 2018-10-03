@@ -11,14 +11,14 @@
     # get version checksum from cosi-server_checksums.txt (sha256 signatures) in <repo_url>/releases
     #
     # (see https://github.com/circonus-labs/cosi-server/releases/latest)
-    version_tag: v0.4.0
-    version_checksum: sha256:58e913ba3bec49768e0b613c8a7b202e432c05fe3af51ecf873196a8a24c9ae9
+    version_tag: v0.4.1
+    version_checksum: sha256:96b387f70b2032cc0d2c9bf2a06f691850613ab42c1e87cf40b00085c3e711ae
     #
     # derived name of tgz to download and install
     #
     install_file: "cosi-server_{{ version_tag|replace('v','') }}_{{ ansible_system|lower }}_x86_64.tar.gz"
     #
-    # the full download URL computed for the release would be, for example:
+    # for example, if version_tag were 0.1.0, the full download URL would be:
     # https://github.com/circonus-labs/cosi-server/releases/download/v0.1.0/cosi-server_0.1.0_linux_x86_64.tar.gz
     #
     download_url: "{{ repo_url }}/releases/download/{{ version_tag }}/{{ install_file }}"
@@ -32,14 +32,14 @@
     # version of agent to serve
     #
     # see https://github.com/circonus-labs/circonus-agent/releases/latest
-    agent_version: v0.17.0
+    agent_version: v0.17.1
     #
     # cosi tool settings - the file to redirect the install request to will be
     # dynamically generated based on query arguments sent by the installer (system
     # os type (e.g. linux, freebsd, solaris, etc.), system architecture, etc.)
     #
     # see https://github.com/circonus-labs/cosi-tool/releases/latest
-    cosi_tool_version: v0.3.1
+    cosi_tool_version: v0.3.2
     cosi_tool_base_url: "https://github.com/circonus-labs/cosi-tool/releases/download"
   roles:
     - os
