@@ -14,6 +14,13 @@
 # if package_url is not defined, the default will be used
 
 - dist: Ubuntu
+  vers: '18.04'
+  arch: x86_64
+  type: Linux
+  package_info:
+    package_file: circonus-agent-{{ agent_version|replace('v','') }}-1.ubuntu.18.04_x86_64.deb
+
+- dist: Ubuntu
   vers: '16.04'
   arch: x86_64
   type: Linux
