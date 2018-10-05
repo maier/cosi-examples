@@ -32,7 +32,7 @@
     # version of agent to serve
     #
     # see https://github.com/circonus-labs/circonus-agent/releases/latest
-    agent_version: v0.17.1
+    agent_version: v0.17.2
     #
     # cosi tool settings - the file to redirect the install request to will be
     # dynamically generated based on query arguments sent by the installer (system
