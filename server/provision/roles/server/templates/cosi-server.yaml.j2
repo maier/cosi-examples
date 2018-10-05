@@ -8,7 +8,7 @@ cosi_tool_base_url: {{ cosi_tool_base_url }}
 content_path: "{{ cosi_directory}}/content"
 package_config_file: "{{ cosi_directory }}/etc/circonus-packages.yaml"
 {% if local_agent_packages %}
-package_base_url: "http://{{ cosi_server_addr }}:{{ cosi_server_port }}/packages"
+package_base_url: "{{ local_agent_packages_url }}/packages"
 {% else %}
 package_base_url: http://updates.circonus.com/node-agent/packages
 {% endif %}
@@ -50,5 +50,5 @@ statsd:
   prefix: cosi-server
 debug: false
 log:
-  level: warn
+  level: info
   pretty: false

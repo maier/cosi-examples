@@ -20,7 +20,9 @@ Vagrant.configure(2) do |config|
             ansible.extra_vars = {
                 cosi_server_addr: server_ip, # NOTE: can be either an ip or fqdn
                 cosi_server_port: server_port,
-                cosi_listen: ":#{server_port}"
+                cosi_listen: ":#{server_port}",
+                # only applicable if local_agent_packages is true in cosi-server.yaml
+                local_agent_packages_url: "http://#{server_ip}:#{server_port}"
             }
         end
     end
