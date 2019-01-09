@@ -36,9 +36,3 @@
 - name: Enable circonus-cosi-server service
   become: true
   service: name="circonus-cosi-server" enabled=yes
-
-- name: Deployment Notification
-  slack:
-    token: "{{ slack_token }}"
-    msg: "deployed: cosi server {{ version_tag }} (agent {{ agent_version }}, tool {{ cosi_tool_version }})"
-  when: slack_token != ""
