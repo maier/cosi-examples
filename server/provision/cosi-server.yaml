@@ -41,12 +41,47 @@
     # see https://github.com/circonus-labs/cosi-tool/releases/latest
     cosi_tool_version: v0.5.1
     cosi_tool_base_url: "https://github.com/circonus-labs/cosi-tool/releases/download"
-  roles:
-    - os
-    - server
+    #
+    # override in a local extra vars file
+    slack_token: ""
+  # roles:
+  #     - os
+  #     - server
   tasks:
-      - name: Deployment Notification
-        slack:
-          token: "{{ slack_token }}"
-          msg: "deployed: cosi server {{ version_tag }} (agent {{ agent_version }}, tool {{ cosi_tool_version }})"
-        when: slack_token is defined and slack_token != ""
+      - block:
+          - include_role:
+              name: os
+          - include_role:
+              name: server
+        rescue:
+            - name: failure notification
+              slack:
+                token: "{{ slack_token }}"
+                color: danger
+                attachments:
+                    - title: Failed
+                      text: "Deployment of Circonus One Step Install on {{ inventory_hostname }}"
+                      fields:
+                          - title: cosi-server
+                            value: "{{ version_tag }}"
+                            short: true
+              when: slack_token != ""
+        always:
+            - name: deployment notification
+              slack:
+                token: "{{ slack_token }}"
+                color: good
+                attachments:
+                    - title: Success
+                      text: "Deployed Circonus One Step Install on {{ inventory_hostname }}"
+                      fields:
+                          - title: cosi-server
+                            value: "{{ version_tag }}"
+                            short: true
+                          - title: cosi-tool
+                            value: "{{ cosi_tool_version}}"
+                            short: true
+                          - title: circonus-agent
+                            value: "{{ agent_version }}"
+                            short: true
+              when: slack_token != ""
