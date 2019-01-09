@@ -50,11 +50,13 @@
   become: true
   when: local_agent_packages
   copy:
-      src: packages
+      src: "{{ item }}"
       dest: "{{ cosi_directory }}/content"
       owner: "{{ cosi_owner }}"
       group: "{{ cosi_group }}"
       mode: 0644
+  with_fileglob:
+      - "packages/*{{ agent_version|replace('v','') }}*"
 
 - name: Install custom package configuration
   become: true
