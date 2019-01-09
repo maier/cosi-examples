@@ -11,8 +11,8 @@
     # get version checksum from cosi-server_checksums.txt (sha256 signatures) in <repo_url>/releases
     #
     # (see https://github.com/circonus-labs/cosi-server/releases/latest)
-    version_tag: v0.4.3
-    version_checksum: sha256:89385dfc6305b7c6e1ea1efc27a05de5f2b073ff696db0498b100baa2fdc6452
+    version_tag: v0.5.1
+    version_checksum: sha256:104d9e64a6d6dbe4041fdeb6f4e21015a573dfe816c8c8df34f62bf2311dd6e6
     #
     # derived name of tgz to download and install
     #
@@ -32,14 +32,14 @@
     # version of agent to serve
     #
     # see https://github.com/circonus-labs/circonus-agent/releases/latest
-    agent_version: v0.18.1
+    agent_version: v0.19.1
     #
     # cosi tool settings - the file to redirect the install request to will be
     # dynamically generated based on query arguments sent by the installer (system
     # os type (e.g. linux, freebsd, solaris, etc.), system architecture, etc.)
     #
     # see https://github.com/circonus-labs/cosi-tool/releases/latest
-    cosi_tool_version: v0.4.2
+    cosi_tool_version: v0.5.1
     cosi_tool_base_url: "https://github.com/circonus-labs/cosi-tool/releases/download"
   roles:
     - os
