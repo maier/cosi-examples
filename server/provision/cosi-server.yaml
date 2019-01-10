@@ -42,46 +42,59 @@
     cosi_tool_version: v0.5.1
     cosi_tool_base_url: "https://github.com/circonus-labs/cosi-tool/releases/download"
     #
-    # override in a local extra vars file
+    # prod defaults, override in a local extra vars file
     slack_token: ""
-  # roles:
-  #     - os
-  #     - server
+    slack_success_channel: "" # default, use the channel associated with the token
+    slack_failure_channel: "{{ slack_success_channel }}"
+    # the public address used in URLs
+    cosi_server_addr: setup.circonus.com
+    # what port the server should listen on
+    cosi_server_port: 8088
+    # add an IP address before the colon to listen
+    # on a specific network interface
+    cosi_listen: ":{{ cosi_server_port }}"
+    # only applicable when serving packages from the cosi-server,
+    # if local_agent_packages is true in cosi-server.yaml
+    local_agent_packages_url: "https://{{ cosi_server_addr }}"
   tasks:
       - block:
           - include_role:
               name: os
           - include_role:
               name: server
+          - name: deployment notification
+            slack:
+              token: "{{ slack_token }}"
+              color: good
+              channel: "{{ slack_success_channel }}"
+              attachments:
+                - title: Success
+                  text: "Deployed Circonus One Step Install on {{ inventory_hostname }}"
+                  fields:
+                      - title: cosi-server
+                        value: "{{ version_tag }}"
+                        short: true
+                      - title: cosi-tool
+                        value: "{{ cosi_tool_version}}"
+                        short: true
+                      - title: circonus-agent
+                        value: "{{ agent_version }}"
+                        short: true
+            when: slack_token != ""
         rescue:
             - name: failure notification
               slack:
                 token: "{{ slack_token }}"
                 color: danger
+                channel: "{{ slack_failure_channel }}"
                 attachments:
                     - title: Failed
                       text: "Deployment of Circonus One Step Install on {{ inventory_hostname }}"
                       fields:
-                          - title: cosi-server
-                            value: "{{ version_tag }}"
-                            short: true
-              when: slack_token != ""
-        always:
-            - name: deployment notification
-              slack:
-                token: "{{ slack_token }}"
-                color: good
-                attachments:
-                    - title: Success
-                      text: "Deployed Circonus One Step Install on {{ inventory_hostname }}"
-                      fields:
-                          - title: cosi-server
-                            value: "{{ version_tag }}"
-                            short: true
-                          - title: cosi-tool
-                            value: "{{ cosi_tool_version}}"
-                            short: true
-                          - title: circonus-agent
-                            value: "{{ agent_version }}"
-                            short: true
+                          - title: task
+                            value: "{{ ansible_failed_task.name }}"
+                          - title: action
+                            value: "{{ ansible_failed_task.action }}"
+                          - title: result
+                            value: "```\n{{ ansible_failed_result.msg }}\n```"
               when: slack_token != ""
