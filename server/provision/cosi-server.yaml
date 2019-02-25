@@ -11,8 +11,8 @@
     # get version checksum from cosi-server_checksums.txt (sha256 signatures) in <repo_url>/releases
     #
     # (see https://github.com/circonus-labs/cosi-server/releases/latest)
-    version_tag: v0.5.1
-    version_checksum: sha256:104d9e64a6d6dbe4041fdeb6f4e21015a573dfe816c8c8df34f62bf2311dd6e6
+    version_tag: v0.5.2
+    version_checksum: sha256:c80c9ba4faf67029d10cb51fd8f231987d52908a93cc5fea1bae727f71499832
     #
     # derived name of tgz to download and install
     #
@@ -39,7 +39,7 @@
     # os type (e.g. linux, freebsd, solaris, etc.), system architecture, etc.)
     #
     # see https://github.com/circonus-labs/cosi-tool/releases/latest
-    cosi_tool_version: v0.5.1
+    cosi_tool_version: v0.5.2
     cosi_tool_base_url: "https://github.com/circonus-labs/cosi-tool/releases/download"
     #
     # prod defaults, override in a local extra vars file
