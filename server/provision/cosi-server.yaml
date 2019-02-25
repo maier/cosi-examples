@@ -72,13 +72,13 @@
                   text: "Deployed Circonus One Step Install on {{ inventory_hostname }}"
                   fields:
                       - title: cosi-server
-                        value: "{{ version_tag }}"
+                        value: "<https://github.com/circonus-labs/cosi-server/releases/tag/{{ version_tag }}|{{ version_tag }}>"
                         short: true
                       - title: cosi-tool
-                        value: "{{ cosi_tool_version}}"
+                        value: "<https://github.com/circonus-labs/cosi-tool/releases/tag/{{ cosi_tool_version }}|{{ cosi_tool_version }}>"
                         short: true
                       - title: circonus-agent
-                        value: "{{ agent_version }}"
+                        value: "<https://github.com/circonus-labs/circonus-agent/releases/tag/{{ agent_version }}|{{ agent_version }}>"
                         short: true
             when: slack_token != ""
         rescue:
