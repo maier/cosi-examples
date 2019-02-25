@@ -58,6 +58,16 @@
   with_fileglob:
       - "packages/*{{ agent_version|replace('v','') }}*"
 
+- name: Ensure release index accessible by cosi-server user
+  become: true
+  when: local_agent_packages
+  file:
+      path: "{{ cosi_directory }}/content/packages/index.html"
+      owner: nobody
+      group: nobody
+      mode: 0644
+      state: touch
+
 - name: Install custom package configuration
   become: true
   template:
