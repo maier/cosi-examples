@@ -1,8 +1,0 @@
----
-
-#
-# Systemd
-#
-- name: Install cosi-server service (systemd)
-  become: true
-  template: src=circonus-cosi-server.service.j2 dest=/etc/systemd/system/circonus-cosi-server.service
