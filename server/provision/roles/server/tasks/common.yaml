@@ -36,6 +36,20 @@
       mode: 0644
   notify: Restart Server
 
+#
+# Systemd
+#
+- name: Install cosi-server service (systemd)
+  become: true
+  when: ansible_facts['service_mgr'] == "systemd"
+  template: 
+      src: circonus-cosi-server.service.j2 
+      dest: /etc/systemd/system/circonus-cosi-server.service
+      owner: "root"
+      group: "root"
+      mode: 0644
+  notify: Restart Server
+
 - name: Check cosi-server local packages directory
   become: true
   when: local_agent_packages
@@ -45,18 +59,31 @@
       group: "{{ cosi_group }}"
       mode: 0755
       state: directory
+#
+# rsync - used for agent package synchronize below
+#
+- name: Install rsync command
+  become: true
+  package:
+      name: rsync
+      state: present
 
 - name: Upload cosi-agent packages
   become: true
   when: local_agent_packages
-  copy:
-      src: "{{ item }}"
+  synchronize:
+      src: "roles/server/files/packages"
       dest: "{{ cosi_directory }}/content"
-      owner: "{{ cosi_owner }}"
-      group: "{{ cosi_group }}"
-      mode: 0644
-  with_fileglob:
-      - "packages/*{{ agent_version|replace('v','') }}*"
+      rsync_opts:
+          - "--exclude=index.html"
+  # copy:
+  #     src: "{{ item }}"
+  #     dest: "{{ cosi_directory }}/content/packages"
+  #     owner: "{{ cosi_owner }}"
+  #     group: "{{ cosi_group }}"
+  #     mode: 0644
+  # with_fileglob:
+  #     - "packages/*{{ agent_version|replace('v','') }}*"
 
 - name: Ensure release index accessible by cosi-server user
   become: true
